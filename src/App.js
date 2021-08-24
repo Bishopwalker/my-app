@@ -9,7 +9,7 @@ const tempArr = [{
   age: 33,
   onlineStatus: true
 }]
-
+ 
 function App() {
   return (
     <div className="App">
