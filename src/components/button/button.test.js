@@ -18,24 +18,25 @@ import { fetchPosts } from '../../actions';
         })
     })
     describe('It Renders',()=>{
-        let wrapper;
+        let wrapper, mockFunc;
         beforeEach(()=>{
+            mockFunc = jest.fn()
             const props ={
                 buttonText: 'Example Button Text',
-                emitEvent:()=>{
-
-                }
+                emitEvent: mockFunc
             }
             wrapper = shallow(<SharedButton {...props} />)
         })
         it('Should Render a Button',()=>{
-            const button = findByTestArr(wrapper, 'buttonComponent')
-            expect(button.length).toBe(1)
+            const button = findByTestArr(wrapper, 'buttonComponent');
+            expect(button.length).toBe(1);
         })
-        it('Should fire only once',()=>{
-            const button = findByTestArr(wrapper,'buttonComponent')
-            
-        
+        it('Should emit callback on click even',()=>{
+            const button = findByTestArr(wrapper,'buttonComponent');
+          button.simulate('click');
+            const callBack=mockFunc.mock.calls.length;
+            expect(callBack).toBe(1)
+
         })
     })
  })
